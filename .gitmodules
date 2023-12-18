@@ -1,0 +1,5 @@
+[submodule "calls_flutter"]
+	path = calls_flutter
+	url = https://git.woa.com/crdc/hybird/calls_flutter.git
+        branch = develop
+
