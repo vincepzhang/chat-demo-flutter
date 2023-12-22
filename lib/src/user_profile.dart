@@ -73,38 +73,67 @@ class UserProfileState extends State<UserProfile> {
         });
         break;
       case "audioCall":
-        OfflinePushInfo offlinePush = OfflinePushInfo(
-          title: "",
-          desc: TIM_t("邀请你语音通话"),
-          ext: "{\"conversationID\": \"\"}",
-          disablePush: false,
-          androidOPPOChannelID: PushConfig.OPPOChannelID,
-          ignoreIOSBadge: false,
-        );
+        // OfflinePushInfo offlinePush = OfflinePushInfo(
+        //   title: "",
+        //   desc: TIM_t("邀请你语音通话"),
+        //   ext: "{\"conversationID\": \"\"}",
+        //   disablePush: false,
+        //   androidOPPOChannelID: PushConfig.OPPOChannelID,
+        //   ignoreIOSBadge: false,
+        // );
+        //
+        // await Permissions.checkPermission(context, Permission.microphone.value);
+        // TUIOfflinePushInfo tuiOfflinePushInfo =
+        //     CommonUtils.convertTUIOfflinePushInfo(offlinePush);
+        // TUICallParams params =  TUICallParams();
+        // params.offlinePushInfo = tuiOfflinePushInfo;
 
-        await Permissions.checkPermission(context, Permission.microphone.value);
-        TUIOfflinePushInfo tuiOfflinePushInfo =
-            CommonUtils.convertTUIOfflinePushInfo(offlinePush);
-        TUICallParams params =  TUICallParams();
-        params.offlinePushInfo = tuiOfflinePushInfo;
+        TUIOfflinePushInfo offlinePushInfo = TUIOfflinePushInfo();
+        offlinePushInfo.title = "来电了！！";
+        offlinePushInfo.desc = TIM_t("邀请你语音通话");
+        // offlinePushInfo.isDisablePush = true;
+        offlinePushInfo.iOSPushType = TUICallIOSOfflinePushType.VoIP;
+        offlinePushInfo.ignoreIOSBadge = true;
+        offlinePushInfo.iOSSound = "phone_ringing.mp3";
+        offlinePushInfo.androidSound = "phone_ringing";
+        offlinePushInfo.androidOPPOChannelID = PushConfig.OPPOChannelID;
+        offlinePushInfo.androidFCMChannelID = "call_messages";
+
+        TUICallParams params = TUICallParams();
+        params.offlinePushInfo = offlinePushInfo;
         await _calling?.call(widget.userID, TUICallMediaType.audio, params);
         break;
       case "videoCall":
-        OfflinePushInfo offlinePush = OfflinePushInfo(
-          title: "",
-          desc: TIM_t("邀请你视频通话"),
-          ext: "{\"conversationID\": \"\"}",
-          androidOPPOChannelID: PushConfig.OPPOChannelID,
-          disablePush: false,
-          ignoreIOSBadge: false,
-        );
+        // OfflinePushInfo offlinePush = OfflinePushInfo(
+        //   title: "",
+        //   desc: TIM_t("邀请你视频通话"),
+        //   ext: "{\"conversationID\": \"\"}",
+        //   androidOPPOChannelID: PushConfig.OPPOChannelID,
+        //   disablePush: false,
+        //   ignoreIOSBadge: false,
+        // );
+        //
+        // await Permissions.checkPermission(context, Permission.camera.value);
+        // await Permissions.checkPermission(context, Permission.microphone.value);
+        // TUIOfflinePushInfo tuiOfflinePushInfo =
+        //     CommonUtils.convertTUIOfflinePushInfo(offlinePush);
+        // TUICallParams params =  TUICallParams();
+        // params.offlinePushInfo = tuiOfflinePushInfo;
 
-        await Permissions.checkPermission(context, Permission.camera.value);
-        await Permissions.checkPermission(context, Permission.microphone.value);
-        TUIOfflinePushInfo tuiOfflinePushInfo =
-            CommonUtils.convertTUIOfflinePushInfo(offlinePush);
-        TUICallParams params =  TUICallParams();
-        params.offlinePushInfo = tuiOfflinePushInfo;
+
+        TUIOfflinePushInfo offlinePushInfo = TUIOfflinePushInfo();
+        offlinePushInfo.title = "来电了！！";
+        offlinePushInfo.desc = TIM_t("邀请你语音通话");
+        // offlinePushInfo.isDisablePush = true;
+        offlinePushInfo.iOSPushType = TUICallIOSOfflinePushType.VoIP;
+        offlinePushInfo.ignoreIOSBadge = true;
+        offlinePushInfo.iOSSound = "phone_ringing.mp3";
+        offlinePushInfo.androidSound = "phone_ringing";
+        offlinePushInfo.androidOPPOChannelID = PushConfig.OPPOChannelID;
+        offlinePushInfo.androidFCMChannelID = "call_messages";
+
+        TUICallParams params = TUICallParams();
+        params.offlinePushInfo = offlinePushInfo;
         _calling?.call(widget.userID, TUICallMediaType.video, params);
         break;
     }
